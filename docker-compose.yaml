@@ -1,0 +1,32 @@
+version: "2.1"
+
+networks:
+  gsbooks:
+    external: false
+
+services:
+  server:
+    build: .
+    container_name: gsbooks
+    networks:
+      - gsbooks
+    ports:
+      - "8080:80"
+    volumes:
+      - ./conf:/etc/gsbooks/
+    depends_on:
+      db:
+        condition: service_started
+
+  db:
+    image: postgres:11-alpine
+    container_name: gsbooks-postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=default
+      - POSTGRES_PASSWORD=default
+      - POSTGRES_DB=gsbooks
+    networks:
+      - gsbooks
+    volumes:
+      - ./data:/var/lib/postgresql/
