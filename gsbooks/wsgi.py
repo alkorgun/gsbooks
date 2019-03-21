@@ -56,7 +56,7 @@ async def get_books_list(request):
 
 @app.get("/book/<pk:int>")
 async def get_book(request, pk):
-	book = await Book.fetch_unhiden(int(pk))
+	book = await Book.fetch_existent(int(pk))
 	if not book:
 		return error(404, "no such book")
 	return json(book.to_dict())
@@ -67,7 +67,7 @@ async def patch_book(request, pk):
 	if not isinstance(request.json, dict):
 		return error(400, "bad request (list)")
 
-	book = await Book.fetch_unhiden(int(pk))
+	book = await Book.fetch_existent(int(pk))
 	if not book:
 		return error(404, "no such book")
 
@@ -89,7 +89,7 @@ async def patch_book(request, pk):
 
 @app.delete("/book/<pk:int>")
 async def delete_book(request, pk):
-	book = await Book.fetch_unhiden(int(pk))
+	book = await Book.fetch_existent(int(pk))
 	if not book:
 		return error(404, "no such book")
 	try:

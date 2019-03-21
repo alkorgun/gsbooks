@@ -23,7 +23,7 @@ class Book(db.Model):
 	existent = sa.Column(sa.Boolean, default=True)
 
 	@classmethod
-	def fetch_unhiden(cls, pk):
+	def fetch_existent(cls, pk):
 		return cls.query.where(
 			Book.id == int(pk)
 		).where(

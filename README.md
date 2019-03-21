@@ -50,6 +50,6 @@ curl -v -w "\n" -X DELETE localhost:8080/book/1
 
 ### POST / PATCH limitations
 
-* `name` — `varchar(255)`
-* `author` — `varchar(255)`
-* `rating` — `0 < integer < 11`
+* `name: varchar(255)`
+* `author: varchar(255)`
+* `rating: 0 < integer < 11`
