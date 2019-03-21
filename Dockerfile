@@ -9,6 +9,7 @@ RUN pip install -r requirements.txt
 
 COPY gsbooks gsbooks/
 COPY scripts/* /bin/
+COPY run.sh ./
 
 RUN chmod a+x ./run.sh /bin/*
 
